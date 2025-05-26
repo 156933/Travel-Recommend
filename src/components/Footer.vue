@@ -6,36 +6,27 @@
       <el-row :gutter="20">
         <!-- 公司简介 -->
         <el-col :xs="24" :sm="12" :md="8" class="footer-col">
-          <h4 class="footer-title">TravelGo</h4>
+          <h4 class="footer-title">旅游推荐</h4>
           <p class="footer-text">
-            Your smart companion for planning unforgettable trips around the world.  
-            Explore, book and enjoy — all in one place.
+            探索、预订、享受——一切尽在一处。
           </p>
         </el-col>
 
-        <!-- 快速链接 -->
-        <el-col :xs="24" :sm="12" :md="8" class="footer-col">
-          <h4 class="footer-title">Quick&nbsp;Links</h4>
-          <el-link type="info" href="/">Home</el-link><br />
-          <el-link type="info" href="/destinations">Destinations</el-link><br />
-          <el-link type="info" href="/cart">Cart</el-link><br />
-          <el-link type="info" href="/orders">My&nbsp;Orders</el-link>
-        </el-col>
 
         <!-- 联系方式 -->
         <el-col :xs="24" :sm="12" :md="8" class="footer-col">
           <h4 class="footer-title">Contact&nbsp;Us</h4>
           <p class="footer-text">
             <el-icon class="icon"><Location /></el-icon>
-            123 Marina Bay, Singapore
+            230902 计算机科学与技术2班
           </p>
           <p class="footer-text">
             <el-icon class="icon"><Phone /></el-icon>
-            +65&nbsp;800-123-456
+            13888888888
           </p>
           <p class="footer-text">
             <el-icon class="icon"><Message /></el-icon>
-            hello@travelgo.com
+            zhou15996@gmail.com
           </p>
         </el-col>
       </el-row>
@@ -44,11 +35,7 @@
     <!-- 分隔线 -->
     <el-divider class="footer-divider" />
 
-    <!-- 下半部分：版权 & 技术栈 -->
-    <div class="footer-bottom">
-      <span>© 2025 TravelGo. All&nbsp;rights&nbsp;reserved.</span>
-      <span>Powered by Vue 3 & Element Plus</span>
-    </div>
+    
   </footer>
 </template>
 
@@ -58,7 +45,7 @@ import { Location, Phone, Message } from '@element-plus/icons-vue'
 
 <style scoped>
 .footer {
-  background: #303133;        /* 深灰底 */
+  background: #303133;        
   color: #cfd3dc;
   font-size: 14px;
 }
