@@ -11,6 +11,8 @@
           <h3>{{ order.trip.title }}</h3>
           <p>价格：￥{{ order.trip.price }}</p>
           <p>下单时间：{{ order.createdAt }}</p>
+
+          
         </el-card>
       </el-col>
     </el-row>
@@ -26,6 +28,10 @@ import { useUserStore } from '@/store/userStore'
 import { useOrderStore } from '@/store/orderStore'
 import { useTripStore } from '@/store/tripStore'
 import { computed } from 'vue'
+
+
+
+
 
 const user = useUserStore()
 const orderStore = useOrderStore()
@@ -55,4 +61,8 @@ const orders = computed(() => {
 .not-logged {
   padding: 80px 20px;
 }
+
+
+
+
 </style>

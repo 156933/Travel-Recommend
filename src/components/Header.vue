@@ -1,7 +1,8 @@
 <template>
   <div class="navbar">
     <div class="navbar-left" @click="$router.push('/')">
-      <span class="logo">🌍 旅行网</span>
+      <img src="/images/logo.png" class="logo-img" />
+      <span class="logo">旅行网</span>
     </div>
 
     <div class="navbar-right">
@@ -55,4 +56,17 @@ const user = useUserStore()
   font-size: 14px;
   color: #333;
 }
+
+.logo-img {
+  height: 36px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #409eff;
+}
+
 </style>

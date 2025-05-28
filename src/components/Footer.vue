@@ -1,10 +1,7 @@
-<!-- components/SiteFooter.vue -->
 <template>
   <footer class="footer">
-    <!-- 上半部分：三列内容 -->
     <div class="footer-top">
       <el-row :gutter="20">
-        <!-- 公司简介 -->
         <el-col :xs="24" :sm="12" :md="8" class="footer-col">
           <h4 class="footer-title">旅游推荐</h4>
           <p class="footer-text">
@@ -13,9 +10,8 @@
         </el-col>
 
 
-        <!-- 联系方式 -->
         <el-col :xs="24" :sm="12" :md="8" class="footer-col">
-          <h4 class="footer-title">Contact&nbsp;Us</h4>
+          <h4 class="footer-title">关于</h4>
           <p class="footer-text">
             <el-icon class="icon"><Location /></el-icon>
             230902 计算机科学与技术2班
@@ -32,7 +28,6 @@
       </el-row>
     </div>
 
-    <!-- 分隔线 -->
     <el-divider class="footer-divider" />
 
     
@@ -50,7 +45,6 @@ import { Location, Phone, Message } from '@element-plus/icons-vue'
   font-size: 14px;
 }
 
-/* ---------- 顶部三栏 ---------- */
 .footer-top {
   max-width: 1200px;
   padding: 40px 24px 20px;
@@ -75,16 +69,13 @@ import { Location, Phone, Message } from '@element-plus/icons-vue'
   margin-right: 6px;
 }
 
-/* el-link 文字配合深色背景改色 */
 .el-link { --el-link-text-color: #cfd3dc; }
 
-/* ---------- 分隔线 ---------- */
 .footer-divider {
   margin: 0;
   background-color: rgba(255, 255, 255, 0.14);
 }
 
-/* ---------- 底部横条 ---------- */
 .footer-bottom {
   max-width: 1200px;
   padding: 16px 24px;

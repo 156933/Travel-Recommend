@@ -10,6 +10,7 @@ export const useUserStore = defineStore("user", {
         isLoggedIn: false,
         user: {} as User,
         username: '',
+        wishlist: [] as string[],
     }),
     actions: {
         login(name: string) {
@@ -19,7 +20,17 @@ export const useUserStore = defineStore("user", {
         logout() {
             this.username = ''
             this.isLoggedIn = false
-        }
+        },
+        toggleWishlist(id: string) {
+            if (this.wishlist.includes(id)) {
+                this.wishlist = this.wishlist.filter(i => i !== id)
+            } else {
+                this.wishlist.push(id)
+            }
+        },
+        isInWishlist(id: string) {
+            return this.wishlist.includes(id)
+        },
     }
 });
 

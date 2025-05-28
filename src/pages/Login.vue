@@ -20,7 +20,7 @@ const userStore = useUserStore()
 function handleLogin() {
   if (username.value.trim()) {
     userStore.login(username.value.trim())
-    router.push('/') // 登录后跳转首页
+    router.push('/') 
   } else {
     alert('请输入用户名')
   }
