@@ -24,21 +24,17 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/userStore'
-import { useOrderStore } from '@/store/orderStore'
-import { useTripStore } from '@/store/tripStore'
+import { useUserStore } from '../store/userStore'
+import { useOrderStore } from '../store/orderStore'
+import { useTripStore } from '../store/tripStore'
 import { computed } from 'vue'
-
-
-
-
 
 const user = useUserStore()
 const orderStore = useOrderStore()
 const tripStore = useTripStore()
 
 const orders = computed(() => {
-  return orderStore.getOrdersByUser(user.username).map(order => ({
+  return orderStore.getOrdersByUser(user.username).map((order: any) => ({
     ...order,
     trip: tripStore.getTripById(order.tripId)!
   }))

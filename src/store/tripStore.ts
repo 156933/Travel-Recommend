@@ -9,8 +9,12 @@ interface Trip {
     description: string;
 }
 
+interface TripState {
+    trips: Trip[];
+}
+
 export const useTripStore = defineStore("trip", {
-    state: () => ({
+    state: (): TripState => ({
         trips: [
             { id: 'bj', name: '北京', title: '故宫长城 3 日游', cover: '/images/beijing.jpg', price: 1899, description: '穿越古都历史，打卡天安门与万里长城' },
             { id: 'sh', name: '上海', title: '摩登都市 2 日游', cover: '/images/shanghai.jpg', price: 1599, description: '感受东方巴黎，游览外滩与迪士尼' },
@@ -21,20 +25,26 @@ export const useTripStore = defineStore("trip", {
             { id: 'lz', name: '丽江', title: '丽江古城 3 日游', cover: '/images/lijiang.jpg', price: 1899, description: '邂逅古城风情，感受纳西文化与玉龙雪山' },
             { id: 'gl', name: '桂林', title: '桂林山水 2 日游', cover: '/images/guilin.jpg', price: 1399, description: '山水甲天下，游漓江、阳朔西街' },
             { id: 'xa', name: '西安', title: '历史古都 3 日游', cover: '/images/xian.jpg', price: 1699, description: '兵马俑、大雁塔、回民街美食全体验' }
-
-        ] as Trip[],
-
+        ],
     }),
     getters: {
-        getTripById: (state) => (id: string) => state.trips.find(t => t.id === id),
+        getTripById: (state: TripState) => (id: string) => state.trips.find((t: Trip) => t.id === id),
 
-
-        getRandomSlides: (state) => {
+        getRandomSlides: (state: TripState) => {
             const shuffled = [...state.trips].sort(() => Math.random() - 0.5)
             return shuffled.slice(0, 3)
+        },
+
+        // 搜索功能
+        searchTrips: (state: TripState) => (query: string) => {
+            if (!query.trim()) return state.trips;
+            
+            const searchTerm = query.toLowerCase().trim();
+            return state.trips.filter((trip: Trip) => 
+                trip.name.toLowerCase().includes(searchTerm) ||
+                trip.title.toLowerCase().includes(searchTerm) ||
+                trip.description.toLowerCase().includes(searchTerm)
+            );
         }
     }
-
-
-
 });

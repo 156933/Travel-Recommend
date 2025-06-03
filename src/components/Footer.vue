@@ -36,6 +36,10 @@
 
 <script setup lang="ts">
 import { Location, Phone, Message } from '@element-plus/icons-vue'
+
+defineOptions({
+  name: 'Footer'
+})
 </script>
 
 <style scoped>

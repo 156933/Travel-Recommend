@@ -32,8 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/userStore'
-import { useTripStore } from '@/store/tripStore'
+import { useUserStore } from '../store/userStore'
+import { useTripStore } from '../store/tripStore'
 import { Star, StarFilled } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 
@@ -41,7 +41,7 @@ const user = useUserStore()
 const tripStore = useTripStore()
 
 const trips = computed(() =>
-  tripStore.trips.filter(t => user.wishlist.includes(t.id))
+  tripStore.trips.filter((t: any) => user.wishlist.includes(t.id))
 )
 </script>
 

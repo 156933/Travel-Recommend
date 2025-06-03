@@ -4,6 +4,8 @@ import Details from '@/pages/Details.vue';
 import Login from '@/pages/Login.vue';
 import MyOrders from '@/pages/MyOrders.vue';
 import Wishlist from '@/pages/Wishlist.vue';
+import Search from '@/pages/Search.vue';
+import Cart from '@/pages/Cart.vue';
 import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
 
 const routes = [
@@ -22,6 +24,16 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
   },
   {
     path: '/',

@@ -22,11 +22,32 @@
           </tbody>
         </table>
 
-
         <div class="action">
-          <el-button type="primary" size="large" @click="handleOrder" v-if="user.isLoggedIn">立即预定</el-button>
+          <el-button 
+            type="primary" 
+            size="large" 
+            @click="handleAddToCart" 
+            v-if="user.isLoggedIn"
+          >
+            加入购物车
+          </el-button>
 
-          <el-button type="warning" size="large" @click="$router.push('/login')" v-else>请先登录</el-button>
+          <el-button 
+            type="warning" 
+            size="large" 
+            @click="$router.push('/login')" 
+            v-else
+          >
+            请先登录
+          </el-button>
+
+          <el-icon 
+            class="wishlist-icon" 
+            @click="user.toggleWishlist(tripId)"
+            v-if="user.isLoggedIn"
+          >
+            <component :is="user.isInWishlist(tripId) ? StarFilled : Star" />
+          </el-icon>
         </div>
       </div>
     </div>
@@ -37,16 +58,15 @@
   </div>
 </template>
 
-
-
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue'
 import { ElMessage } from 'element-plus'
+import { Star, StarFilled } from '@element-plus/icons-vue'
 
-import { useTripStore } from '@/store/tripStore'
-import { useUserStore } from '@/store/userStore'
-import { useOrderStore } from '@/store/orderStore'
+import { useTripStore } from '../store/tripStore'
+import { useUserStore } from '../store/userStore'
+import { useCartStore } from '../store/cartStore'
 
 const route = useRoute()
 const router = useRouter()
@@ -57,16 +77,13 @@ const tripStore = useTripStore()
 const trip = computed(() => tripStore.getTripById(tripId))
 
 const user = useUserStore()
-const orderStore = useOrderStore()
+const cart = useCartStore()
 
-function handleOrder() {
+function handleAddToCart() {
   if (!trip.value) return
-
-  orderStore.addOrder(user.username, tripId)
-
-  ElMessage.success('预定成功！')
-
-  router.push('/orders')
+  
+  cart.addToCart(trip.value)
+  ElMessage.success(`已将 ${trip.value.title} 添加到购物车`)
 }
 </script>
 
@@ -75,14 +92,14 @@ function handleOrder() {
   display: flex;
   justify-content: center;
   padding: 40px 20px;
-  background: #f5f5f5;
+  background: var(--bg-secondary);
   min-height: 100vh;
 }
 
 .detail-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
   max-width: 720px;
   width: 100%;
   overflow: hidden;
@@ -95,101 +112,97 @@ function handleOrder() {
 }
 
 .info {
-  padding: 24px;
+  padding: var(--spacing-xl);
+  position: relative;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-primary);
   text-align: center;
 }
 
 .trip-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 16px;
-  margin-bottom: 24px;
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-xl);
 }
 
 .trip-table td {
-  padding: 8px 12px;
+  padding: var(--spacing-sm) var(--spacing-md);
   vertical-align: top;
-  color: #444;
+  color: var(--text-primary);
 }
 
 .trip-table td:first-child {
   width: 100px;
-  font-weight: bold;
-  color: #666;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
 }
 
 .price {
-  color: #409EFF;
-  font-weight: bold;
-  font-size: 18px;
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
 }
 
 .action {
   text-align: center;
+  position: relative;
 }
 
-.empty {
-  text-align: center;
-  padding: 80px 20px;
-  font-size: 18px;
-  color: #999;
-}
-
-.detail-wrapper {
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
-  background: #f9f9f9;
-  min-height: 100vh;
-}
-
-.detail-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  padding: 24px;
-  text-align: center;
-}
-
-.cover-img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.title {
+.wishlist-icon {
+  position: absolute;
+  top: -240px;
+  right: 20px;
   font-size: 24px;
-  margin-bottom: 12px;
-  color: #333;
+  color: #fadb14;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
-.price {
-  color: #409EFF;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.desc {
-  margin-top: 16px;
-  font-size: 15px;
-  color: #666;
-  line-height: 1.6;
+.wishlist-icon:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .empty {
-  padding: 80px 20px;
   text-align: center;
-  color: #aaa;
-  font-size: 18px;
+  padding: 80px 20px;
+  font-size: var(--font-size-lg);
+  color: var(--text-tertiary);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .detail-card {
+    margin: 0 var(--spacing-sm);
+  }
+
+  .cover-img {
+    height: 240px;
+  }
+
+  .info {
+    padding: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: var(--font-size-xl);
+  }
+
+  .trip-table {
+    font-size: var(--font-size-sm);
+  }
+
+  .wishlist-icon {
+    top: -180px;
+  }
 }
 </style>
