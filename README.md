@@ -1,33 +1,195 @@
-# Travel-Recommend
+# 旅游推荐系统
 
-This template should help get you started developing with Vue 3 in Vite.
+一个基于 Vue 3 + TypeScript + Element Plus 的简洁旅游推荐系统。
 
-## Recommended IDE Setup
+## 项目简介
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+这是一个课程设计项目，实现了一个简洁的旅游推荐网站，用户可以浏览、搜索旅游套餐，加入购物车并下单。
 
-## Type Support for `.vue` Imports in TS
+## 功能特性
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### 核心功能
+- 🏠 **首页展示** - 展示热门旅游推荐和快速搜索
+- 🔍 **搜索功能** - 支持关键词搜索旅游套餐
+- 📄 **详情页面** - 查看旅游套餐详细信息
+- 🛒 **购物车** - 添加商品到购物车，支持数量调整
+- 📝 **订单管理** - 查看已购买的订单记录
+- 👤 **用户登录** - 简单的用户认证系统
+- ℹ️ **关于页面** - 项目介绍和开发者信息
 
-## Customize configuration
+### 用户体验优化
+- **智能权限控制** - 未登录用户可浏览和加购物车，结算时才需登录
+- **购物车数量提示** - Header显示购物车商品数量徽章
+- **完善的状态处理** - 空状态、错误状态都有友好提示
+- **响应式导航** - 包含Logo、导航菜单、用户操作区的完整Header
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 技术特点
+- 响应式设计，支持移动端
+- 数据持久化（localStorage）
+- 组件化开发
+- TypeScript 类型安全
 
-## Project Setup
+## 技术栈
 
-```sh
+- **前端框架**: Vue 3 (Composition API)
+- **构建工具**: Vite
+- **UI 组件库**: Element Plus
+- **路由**: Vue Router 4
+- **状态管理**: Pinia
+- **语言**: TypeScript
+- **样式**: CSS3
+
+## 项目结构
+
+```
+src/
+├── components/          # 公共组件
+│   ├── Header.vue      # 导航头部组件
+│   ├── SearchBar.vue   # 搜索栏组件
+│   ├── Footer.vue      # 页脚组件
+│   └── CardMenuGrid.vue # 旅游套餐卡片网格
+├── pages/              # 页面组件
+│   ├── Home.vue        # 首页
+│   ├── Search.vue      # 搜索页
+│   ├── Details.vue     # 详情页
+│   ├── Cart.vue        # 购物车页
+│   ├── Login.vue       # 登录页
+│   ├── MyOrders.vue    # 订单页
+│   └── About.vue       # 关于页面
+├── store/              # 状态管理
+│   ├── tripStore.ts    # 旅游套餐数据
+│   ├── userStore.ts    # 用户状态
+│   ├── cartStore.ts    # 购物车状态
+│   └── orderStore.ts   # 订单状态
+├── router/             # 路由配置
+│   └── index.ts
+├── styles/             # 样式文件
+│   └── global.css      # 全局样式
+└── main.ts             # 应用入口
+```
+
+## 快速开始
+
+### 安装依赖
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
+### 开发环境启动
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+### 构建生产版本
+```bash
 npm run build
 ```
+
+### 预览生产版本
+```bash
+npm run preview
+```
+
+## 页面功能详解
+
+### 首页 (/)
+- 展示热门旅游推荐
+- 搜索栏和快速搜索标签
+- 特色服务介绍
+
+### 搜索页 (/search)
+- 支持关键词搜索
+- 显示搜索结果列表
+- 可直接加入购物车
+- 搜索建议标签
+
+### 详情页 (/detail/:id)
+- 显示旅游套餐详细信息
+- 支持加入购物车功能
+- 未登录用户友好提示
+- 错误状态处理
+
+### 购物车 (/cart)
+- 显示已添加的商品
+- 支持数量调整和删除
+- 结算功能（需要登录）
+- 空购物车状态
+
+### 登录页 (/login)
+- 简单的用户名登录
+- 登录后可使用完整功能
+
+### 订单页 (/orders)
+- 需要登录才能访问
+- 显示用户的购买记录
+- 按时间排序显示
+- 未登录友好提示
+
+### 关于页面 (/about)
+- 项目详细介绍
+- 技术栈展示
+- 开发者信息
+- 项目信息
+
+## 用户流程
+
+### 游客用户
+1. 浏览首页推荐内容
+2. 搜索感兴趣的旅游套餐
+3. 查看详情页面
+4. 加入购物车
+5. 在购物车页面点击结算时提示登录
+
+### 注册用户
+1. 登录账户
+2. 浏览和搜索套餐
+3. 加入购物车
+4. 结算生成订单
+5. 在订单页面查看购买记录
+
+## 数据说明
+
+### 旅游套餐数据
+项目内置了多个旅游套餐示例，包括：
+- 北京故宫深度游
+- 三亚海滨度假
+- 张家界自然奇观
+- 成都美食之旅
+- 西安历史文化游
+- 桂林山水精品游
+
+### 数据持久化
+所有数据使用 localStorage 进行本地存储：
+- 用户登录状态
+- 购物车内容
+- 订单记录
+
+## 浏览器支持
+
+- Chrome (推荐)
+- Firefox
+- Safari
+- Edge
+
+## 项目特色
+
+1. **简洁设计** - 去除了复杂的动效和过度设计
+2. **核心功能** - 专注于旅游推荐的核心业务流程
+3. **用户体验** - 智能的权限控制和状态处理
+4. **易于维护** - 代码结构清晰，组件化程度高
+5. **响应式** - 良好的移动端适配
+
+## 开发说明
+
+本项目为课程设计作品，已进行大幅简化：
+- 删除了复杂的 CSS 变量系统
+- 移除了不必要的动画效果
+- 简化了组件结构
+- 保留了核心业务功能
+- 优化了用户体验流程
+
+适合作为 Vue 3 学习和课程设计参考。
+
+## License
+
+MIT

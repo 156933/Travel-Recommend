@@ -9,7 +9,6 @@ interface UserState {
     isLoggedIn: boolean;
     user: User;
     username: string;
-    wishlist: string[];
 }
 
 // 从localStorage加载用户数据
@@ -21,8 +20,7 @@ const loadUserState = (): UserState => {
     return {
         isLoggedIn: false,
         user: {} as User,
-        username: '',
-        wishlist: []
+        username: ''
     }
 }
 
@@ -43,18 +41,7 @@ export const useUserStore = defineStore("user", {
             this.username = ''
             this.isLoggedIn = false
             saveUserState(this.$state)
-        },
-        toggleWishlist(id: string) {
-            if (this.wishlist.includes(id)) {
-                this.wishlist = this.wishlist.filter((i: string) => i !== id)
-            } else {
-                this.wishlist.push(id)
-            }
-            saveUserState(this.$state)
-        },
-        isInWishlist(id: string) {
-            return this.wishlist.includes(id)
-        },
+        }
     }
 });
 

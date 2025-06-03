@@ -3,17 +3,16 @@ import Home from '@/pages/Home.vue';
 import Details from '@/pages/Details.vue';
 import Login from '@/pages/Login.vue';
 import MyOrders from '@/pages/MyOrders.vue';
-import Wishlist from '@/pages/Wishlist.vue';
 import Search from '@/pages/Search.vue';
 import Cart from '@/pages/Cart.vue';
-import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
+import About from '@/pages/About.vue';
 
 const routes = [
-  { path: '/home', 
+  { 
+    path: '/home', 
     name: 'Home', 
     component: Home 
   },
-
   {
     path: '/detail/:id',
     name: 'Details',
@@ -36,6 +35,11 @@ const routes = [
     component: Cart
   },
   {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
     path: '/',
     redirect: '/home'
   },
@@ -43,21 +47,12 @@ const routes = [
     path: '/orders',
     name: 'MyOrders',
     component: MyOrders,
-  },
-  {
-    path: '/wishlist',
-    name: 'Wishlist',
-    component: Wishlist,
   }
-
-
-
 ];
 
-
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 })
 
 export default router;

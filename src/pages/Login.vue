@@ -1,53 +1,66 @@
 <template>
-  <div class="login-container">
-    <el-card class="login-card">
-      <h2 class="title">用户登录</h2>
-      <el-input v-model="username" placeholder="请输入用户名" />
-      <el-button type="primary" class="btn" @click="handleLogin">登录</el-button>
-    </el-card>
+  <div class="login-page">
+    <div class="login-form">
+      <h2>登录</h2>
+      <el-input 
+        v-model="username" 
+        placeholder="请输入用户名"
+        size="large"
+      />
+      <el-button 
+        type="primary" 
+        size="large" 
+        @click="handleLogin"
+        style="width: 100%; margin-top: 15px;"
+      >
+        登录
+      </el-button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useUserStore } from '../store/userStore'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/store/userStore'
+import { ElMessage } from 'element-plus'
 
 const username = ref('')
-const router = useRouter()
 const userStore = useUserStore()
+const router = useRouter()
 
-function handleLogin() {
+const handleLogin = () => {
   if (username.value.trim()) {
-    userStore.login(username.value.trim())
-    router.push('/') 
+    userStore.login(username.value)
+    ElMessage.success('登录成功！')
+    router.push('/')
   } else {
-    alert('请输入用户名')
+    ElMessage.warning('请输入用户名')
   }
 }
 </script>
 
 <style scoped>
-.login-container {
+.login-page {
+  min-height: 100vh;
+  background: #f5f5f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #f3f3f3;
 }
 
-.login-card {
-  width: 320px;
-  padding: 24px;
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.btn {
+.login-form {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   width: 100%;
-  margin-top: 12px;
+  max-width: 400px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
 }
 </style>
