@@ -8,10 +8,10 @@ import Cart from '@/pages/Cart.vue';
 import About from '@/pages/About.vue';
 
 const routes = [
-  { 
-    path: '/home', 
-    name: 'Home', 
-    component: Home 
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
   },
   {
     path: '/detail/:id',

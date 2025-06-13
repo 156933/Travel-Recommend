@@ -8,20 +8,17 @@
       <div class="footer-section">
         <h4>联系我们</h4>
         <p>📍 230902 计算机科学与技术2班</p>
-        <p>📞 13888888888</p>
-        <p>✉️ zhou15996@gmail.com</p>
+        <p>040620230035官心晨、042620230090黄启扬、031120230027曾鸿涛、010120230037周子浩、080520230043肖金桂</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 旅游推荐系统 - 课程设计</p>
+      <p>&copy; 2025 旅游推荐系统 - 课程设计</p>
     </div>
   </footer>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'Footer'
-}
+<script setup lang="ts">
+
 </script>
 
 <style scoped>

@@ -70,8 +70,8 @@
               <div class="tech-category">
                 <h3>前端框架</h3>
                 <ul>
-                  <li>Vue 3 (Composition API)</li>
-                  <li>TypeScript</li>
+                  <li>Vue 3 </li>
+                  <li>JavaScript</li>
                   <li>Vite</li>
                 </ul>
               </div>
@@ -106,11 +106,7 @@
               </div>
               <div class="info-row">
                 <strong>开发时间：</strong>
-                <span>2024年12月</span>
-              </div>
-              <div class="info-row">
-                <strong>项目性质：</strong>
-                <span>课程设计作品</span>
+                <span>2025年6月</span>
               </div>
               <div class="info-row">
                 <strong>开发目的：</strong>
@@ -134,40 +130,28 @@
                 <div class="author-details">
                   <h3>开发者</h3>
                   <p><strong>班级：</strong>230902 计算机科学与技术2班</p>
-                  <p><strong>联系方式：</strong>zhou15996@gmail.com</p>
-                  <p><strong>电话：</strong>13888888888</p>
-                  <p><strong>GitHub：</strong>github.com/your-username</p>
+                  <p>
+                    <strong>小组成员：</strong>040620230035官心晨、042620230090黄启扬、031120230027曾鸿涛、010120230037周子浩、080520230043肖金桂
+                  </p>
+                  <p><strong>项目地址:</strong>github.com/156933/Travel-Recommend</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 致谢 -->
-        <section class="section">
-          <h2>🙏 致谢</h2>
-          <div class="content-card">
-            <p>感谢以下技术和工具的支持：</p>
-            <ul>
-              <li>Vue.js 团队提供的优秀前端框架</li>
-              <li>Element Plus 提供的精美 UI 组件库</li>
-              <li>TypeScript 提供的类型安全支持</li>
-              <li>Vite 提供的快速构建工具</li>
-              <li>所有开源社区贡献者的无私奉献</li>
-            </ul>
-          </div>
-        </section>
+
       </div>
     </div>
     <Footer />
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Footer from '../components/Footer.vue'
 </script>
 
-<script lang="ts">
+<script>
 export default {
   name: 'About'
 }
@@ -182,20 +166,19 @@ export default {
 .about-header {
   text-align: center;
   padding: 40px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   margin-bottom: 40px;
 }
 
 .about-header h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 0 0 10px 0;
 }
 
 .about-header p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0;
-  opacity: 0.9;
 }
 
 .about-content {
@@ -207,7 +190,6 @@ export default {
 }
 
 .section h2 {
-  color: #333;
   margin-bottom: 20px;
   font-size: 1.5rem;
   border-left: 4px solid #667eea;
@@ -216,14 +198,12 @@ export default {
 
 .content-card {
   background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  border: 1px solid #ddd;
 }
 
 .content-card p {
-  line-height: 1.8;
-  color: #666;
+  line-height: 1.6;
   margin-bottom: 15px;
 }
 
@@ -236,14 +216,7 @@ export default {
 .feature-item {
   text-align: center;
   padding: 20px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  transition: transform 0.2s;
-}
-
-.feature-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
 }
 
 .feature-icon {
@@ -251,28 +224,14 @@ export default {
   margin-bottom: 10px;
 }
 
-.feature-item h3 {
-  margin: 10px 0;
-  color: #333;
-}
-
-.feature-item p {
-  color: #666;
-  font-size: 14px;
-  margin: 0;
-}
-
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
+  gap: 20px;
 }
 
 .tech-category h3 {
-  color: #667eea;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #667eea;
-  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .tech-category ul {
@@ -281,111 +240,51 @@ export default {
 }
 
 .tech-category li {
-  padding: 5px 0;
-  color: #666;
-  position: relative;
-  padding-left: 20px;
-}
-
-.tech-category li::before {
-  content: "▸";
-  color: #667eea;
-  position: absolute;
-  left: 0;
+  margin-bottom: 5px;
 }
 
 .project-info {
-  space-y: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .info-row {
   display: flex;
-  margin-bottom: 15px;
-  align-items: center;
-}
-
-.info-row strong {
-  color: #333;
-  min-width: 120px;
-  margin-right: 10px;
-}
-
-.info-row span {
-  color: #666;
+  gap: 10px;
 }
 
 .author-card {
   display: flex;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 }
 
 .author-avatar {
-  font-size: 4rem;
-  background: #667eea;
-  color: white;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 3rem;
 }
 
 .author-details h3 {
-  margin: 0 0 15px 0;
-  color: #333;
+  margin: 0 0 10px 0;
 }
 
 .author-details p {
-  margin: 8px 0;
-  color: #666;
-}
-
-.content-card ul {
-  padding-left: 20px;
-}
-
-.content-card li {
-  margin: 8px 0;
-  color: #666;
-  line-height: 1.6;
+  margin: 5px 0;
 }
 
 @media (max-width: 768px) {
   .about-header h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  
-  .about-header p {
-    font-size: 1rem;
+
+  .features-grid,
+  .tech-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .content-card {
-    padding: 20px;
-  }
-  
+
   .author-card {
     flex-direction: column;
     text-align: center;
   }
-  
-  .tech-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .info-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .info-row strong {
-    min-width: auto;
-    margin-bottom: 5px;
-  }
 }
-</style> 
+</style>

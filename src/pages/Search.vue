@@ -3,7 +3,7 @@
     <div class="search-header">
       <SearchBar />
     </div>
-    
+
     <div class="search-main">
       <div class="search-info">
         <h2 v-if="searchQuery">
@@ -14,7 +14,8 @@
 
       <div v-if="searchResults.length > 0" class="search-results">
         <div class="trip-grid">
-          <div v-for="trip in searchResults" :key="trip.id" class="trip-card" @click="$router.push(`/detail/${trip.id}`)">
+          <div v-for="trip in searchResults" :key="trip.id" class="trip-card"
+            @click="$router.push(`/detail/${trip.id}`)">
             <img :src="trip.cover" class="trip-image" />
             <div class="trip-info">
               <h3>{{ trip.title }}</h3>
@@ -39,22 +40,18 @@
       <div v-else class="search-tips">
         <h3>搜索建议：</h3>
         <div class="suggestions">
-          <el-tag 
-            v-for="suggestion in searchSuggestions" 
-            :key="suggestion"
-            @click="handleSuggestionClick(suggestion)"
-          >
+          <el-tag v-for="suggestion in searchSuggestions" :key="suggestion" @click="handleSuggestionClick(suggestion)">
             {{ suggestion }}
           </el-tag>
         </div>
       </div>
     </div>
-    
+
     <Footer />
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTripStore } from '../store/tripStore'
@@ -75,24 +72,24 @@ const searchResults = computed(() => {
   return tripStore.searchTrips(searchQuery.value)
 })
 
-const handleSuggestionClick = (suggestion: string) => {
+const handleSuggestionClick = (suggestion) => {
   router.push({
     name: 'Search',
     query: { q: suggestion }
   })
 }
 
-const handleAddToCart = (trip: any) => {
+const handleAddToCart = (trip) => {
   cart.addToCart(trip)
   ElMessage.success(`已添加 ${trip.title} 到购物车`)
 }
 
 watch(() => route.query.q, (newQuery) => {
-  searchQuery.value = (newQuery as string) || ''
+  searchQuery.value = newQuery || ''
 }, { immediate: true })
 
 onMounted(() => {
-  searchQuery.value = (route.query.q as string) || ''
+  searchQuery.value = route.query.q || ''
 })
 </script>
 
@@ -105,7 +102,7 @@ onMounted(() => {
 .search-header {
   background: white;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #ddd;
 }
 
 .search-main {
@@ -116,7 +113,6 @@ onMounted(() => {
 
 .search-info h2 {
   margin-bottom: 20px;
-  color: #333;
 }
 
 .trip-grid {
@@ -127,15 +123,8 @@ onMounted(() => {
 
 .trip-card {
   background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
   cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.trip-card:hover {
-  transform: translateY(-2px);
 }
 
 .trip-image {
@@ -150,16 +139,13 @@ onMounted(() => {
 
 .trip-info h3 {
   margin: 0 0 10px 0;
-  color: #333;
 }
 
 .trip-location {
-  color: #666;
   margin: 5px 0;
 }
 
 .trip-description {
-  color: #888;
   margin: 10px 0;
   font-size: 14px;
 }
@@ -200,10 +186,10 @@ onMounted(() => {
   .trip-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .trip-actions {
     flex-direction: column;
     gap: 10px;
   }
 }
-</style> 
+</style>

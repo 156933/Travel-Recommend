@@ -16,12 +16,12 @@ interface CartState {
 }
 
 // 从localStorage加载购物车数据
-const loadCartState = (): CartState => {
+const loadCartState = () => {
     const savedState = localStorage.getItem('cart-state')
     if (savedState) {
         const parsedState = JSON.parse(savedState)
         // 转换日期字符串回Date对象
-        parsedState.items.forEach((item: CartItem) => {
+        parsedState.items.forEach((item) => {
             item.addedAt = new Date(item.addedAt)
         })
         return parsedState
@@ -30,35 +30,35 @@ const loadCartState = (): CartState => {
 }
 
 // 保存购物车数据到localStorage
-const saveCartState = (state: CartState) => {
+const saveCartState = (state) => {
     localStorage.setItem('cart-state', JSON.stringify(state))
 }
 
 export const useCartStore = defineStore("cart", {
-    state: (): CartState => loadCartState(),
-    
+    state: () => loadCartState(),
+
     getters: {
         // 购物车总数量
-        totalItems: (state: CartState) => state.items.reduce((total: number, item: CartItem) => total + item.quantity, 0),
-        
+        totalItems: (state) => state.items.reduce((total, item) => total + item.quantity, 0),
+
         // 购物车总价格
-        totalPrice: (state: CartState) => state.items.reduce((total: number, item: CartItem) => total + (item.price * item.quantity), 0),
-        
+        totalPrice: (state) => state.items.reduce((total, item) => total + (item.price * item.quantity), 0),
+
         // 检查商品是否在购物车中
-        isInCart: (state: CartState) => (productId: string) => state.items.some((item: CartItem) => item.id === productId),
-        
+        isInCart: (state) => (productId) => state.items.some((item) => item.id === productId),
+
         // 获取商品在购物车中的数量
-        getItemQuantity: (state: CartState) => (productId: string) => {
-            const item = state.items.find((item: CartItem) => item.id === productId);
+        getItemQuantity: (state) => (productId) => {
+            const item = state.items.find((item) => item.id === productId);
             return item ? item.quantity : 0;
         }
     },
-    
+
     actions: {
         // 添加商品到购物车
-        addToCart(product: any) {
-            const existingItem = this.items.find((item: CartItem) => item.id === product.id);
-            
+        addToCart(product) {
+            const existingItem = this.items.find((item) => item.id === product.id);
+
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
@@ -76,16 +76,16 @@ export const useCartStore = defineStore("cart", {
             // 保存到localStorage
             saveCartState(this.$state)
         },
-        
+
         // 从购物车移除商品
-        removeFromCart(productId: string) {
-            this.items = this.items.filter((item: CartItem) => item.id !== productId);
+        removeFromCart(productId) {
+            this.items = this.items.filter((item) => item.id !== productId);
             saveCartState(this.$state)
         },
-        
+
         // 更新商品数量
-        updateQuantity(productId: string, quantity: number) {
-            const item = this.items.find((item: CartItem) => item.id === productId);
+        updateQuantity(productId, quantity) {
+            const item = this.items.find((item) => item.id === productId);
             if (item) {
                 if (quantity <= 0) {
                     this.removeFromCart(productId);
@@ -95,7 +95,7 @@ export const useCartStore = defineStore("cart", {
                 }
             }
         },
-        
+
         // 清空购物车
         clearCart() {
             this.items = [];

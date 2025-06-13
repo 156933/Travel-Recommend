@@ -1,20 +1,7 @@
-import { createPinia, defineStore } from "pinia";
-
-interface Trip {
-    id: string;
-    name: string;
-    title: string;
-    cover: string;
-    price: number;
-    description: string;
-}
-
-interface TripState {
-    trips: Trip[];
-}
+import { defineStore } from "pinia";
 
 export const useTripStore = defineStore("trip", {
-    state: (): TripState => ({
+    state: () => ({
         trips: [
             { id: 'bj', name: '北京', title: '故宫长城 3 日游', cover: '/images/beijing.jpg', price: 1899, description: '穿越古都历史，打卡天安门与万里长城' },
             { id: 'sh', name: '上海', title: '摩登都市 2 日游', cover: '/images/shanghai.jpg', price: 1599, description: '感受东方巴黎，游览外滩与迪士尼' },
@@ -28,19 +15,18 @@ export const useTripStore = defineStore("trip", {
         ],
     }),
     getters: {
-        getTripById: (state: TripState) => (id: string) => state.trips.find((t: Trip) => t.id === id),
+        getTripById: (state) => (id) => state.trips.find((t) => t.id === id),
 
-        getRandomSlides: (state: TripState) => {
+        getRandomSlides: (state) => {
             const shuffled = [...state.trips].sort(() => Math.random() - 0.5)
             return shuffled.slice(0, 3)
         },
 
-        // 搜索功能
-        searchTrips: (state: TripState) => (query: string) => {
+        searchTrips: (state) => (query) => {
             if (!query.trim()) return state.trips;
-            
+
             const searchTerm = query.toLowerCase().trim();
-            return state.trips.filter((trip: Trip) => 
+            return state.trips.filter((trip) =>
                 trip.name.toLowerCase().includes(searchTerm) ||
                 trip.title.toLowerCase().includes(searchTerm) ||
                 trip.description.toLowerCase().includes(searchTerm)

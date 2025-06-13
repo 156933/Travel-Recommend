@@ -4,7 +4,7 @@
       <img :src="trip.cover" class="cover-img" />
       <div class="info">
         <h2>{{ trip.title }}</h2>
-        
+
         <div class="detail-info">
           <div class="info-item">
             <strong>目的地：</strong>{{ trip.name }}
@@ -18,21 +18,13 @@
         </div>
 
         <div class="actions">
-          <el-button 
-            type="primary" 
-            size="large" 
-            @click="handleAddToCart"
-          >
+          <el-button type="primary" size="large" @click="handleAddToCart">
             🛒 加入购物车
           </el-button>
           <el-button @click="$router.back()">
             ↩️ 返回
           </el-button>
-          <el-button 
-            v-if="!user.isLoggedIn" 
-            type="success" 
-            @click="$router.push('/login')"
-          >
+          <el-button v-if="!user.isLoggedIn" type="success" @click="$router.push('/login')">
             👤 登录
           </el-button>
         </div>
@@ -57,7 +49,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue'
 import { ElMessage } from 'element-plus'
@@ -67,7 +59,7 @@ import { useCartStore } from '../store/cartStore'
 
 const route = useRoute()
 const router = useRouter()
-const tripId = route.params.id as string
+const tripId = route.params.id
 
 const tripStore = useTripStore()
 const trip = computed(() => tripStore.getTripById(tripId))
@@ -76,9 +68,9 @@ const cart = useCartStore()
 
 function handleAddToCart() {
   if (!trip.value) return
-  
+
   cart.addToCart(trip.value)
-  
+
   if (user.isLoggedIn) {
     ElMessage.success(`已将 ${trip.value.title} 添加到购物车`)
   } else {
@@ -93,8 +85,6 @@ function handleAddToCart() {
 
 <style scoped>
 .detail-page {
-  min-height: 100vh;
-  background: #f5f5f5;
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -102,11 +92,9 @@ function handleAddToCart() {
 
 .detail-card {
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
   max-width: 600px;
   width: 100%;
-  overflow: hidden;
 }
 
 .cover-img {
@@ -116,41 +104,31 @@ function handleAddToCart() {
 }
 
 .info {
-  padding: 30px;
+  padding: 20px;
 }
 
 .info h2 {
   text-align: center;
-  margin-bottom: 25px;
-  color: #333;
-  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
 .detail-info {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .info-item {
-  margin-bottom: 15px;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.info-item strong {
-  color: #555;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .price {
   color: #e74c3c;
   font-weight: bold;
-  font-size: 1.4rem;
 }
 
 .actions {
   text-align: center;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
   margin-bottom: 20px;
 }
@@ -158,78 +136,40 @@ function handleAddToCart() {
 .login-tip {
   background: #f0f9ff;
   border: 1px solid #bfdbfe;
-  border-radius: 8px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
 }
 
-.login-tip p {
-  margin: 0;
-  color: #1e40af;
-  font-size: 14px;
-}
-
-/* 空状态样式 */
 .empty {
-  min-height: 100vh;
-  background: #f5f5f5;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .empty-content {
   background: white;
-  padding: 60px 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  border: 1px solid #ddd;
   text-align: center;
   max-width: 500px;
 }
 
-.empty-content h2 {
-  margin: 0 0 20px 0;
-  color: #333;
-  font-size: 1.8rem;
-}
-
-.empty-content p {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
-
 .empty-actions {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
 }
 
 @media (max-width: 768px) {
-  .detail-card {
-    margin: 0 10px;
-  }
-  
   .cover-img {
     height: 200px;
   }
-  
-  .info {
-    padding: 20px;
-  }
-  
+
   .actions {
     flex-direction: column;
-    align-items: center;
   }
-  
-  .empty-content {
-    padding: 40px 20px;
-    margin: 0 20px;
-  }
-  
+
   .empty-actions {
     flex-direction: column;
   }

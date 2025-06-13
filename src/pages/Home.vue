@@ -6,7 +6,7 @@
         <h1>发现您的完美旅程</h1>
         <p>探索世界各地的精彩目的地，创造难忘的旅行回忆</p>
         <SearchBar />
-        
+
         <!-- 快速搜索 -->
         <div class="quick-search">
           <span @click="handleQuickSearch('北京')">🏛️ 古都北京</span>
@@ -48,7 +48,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import CardMenuGrid from '../components/CardMenuGrid.vue'
 import Footer from '../components/Footer.vue'
 import SearchBar from '../components/SearchBar.vue'
@@ -56,7 +56,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const handleQuickSearch = (query: string) => {
+const handleQuickSearch = (query) => {
   router.push({
     name: 'Search',
     query: { q: query }
@@ -70,9 +70,9 @@ const handleQuickSearch = (query: string) => {
 }
 
 .search-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
-  padding: 60px 20px;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -82,34 +82,27 @@ const handleQuickSearch = (query: string) => {
 }
 
 .search-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 .search-content p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  opacity: 0.9;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 .quick-search {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  gap: 10px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
 .quick-search span {
   background: rgba(255, 255, 255, 0.2);
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 8px 15px;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.quick-search span:hover {
-  background: rgba(255, 255, 255, 0.3);
 }
 
 .recommendations {
@@ -119,71 +112,60 @@ const handleQuickSearch = (query: string) => {
 
 .features {
   background: #f8f9fa;
-  padding: 60px 20px;
+  padding: 40px 20px;
   text-align: center;
 }
 
 .features h2 {
-  font-size: 2rem;
-  margin-bottom: 40px;
-  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
 }
 
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .feature {
   background: white;
-  padding: 30px 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  border: 1px solid #ddd;
 }
 
 .feature-icon {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background: #667eea;
   color: white;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin: 0 auto 20px;
+  margin: 0 auto 15px;
 }
 
 .feature h3 {
-  margin: 0 0 15px 0;
-  color: #333;
+  margin: 0 0 10px 0;
 }
 
 .feature p {
-  color: #666;
   margin: 0;
 }
 
 @media (max-width: 768px) {
   .search-content h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  
-  .quick-search {
-    gap: 10px;
-  }
-  
+
   .quick-search span {
-    padding: 8px 15px;
+    padding: 6px 12px;
     font-size: 14px;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
 }
 </style>

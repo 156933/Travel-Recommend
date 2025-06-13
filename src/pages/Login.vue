@@ -2,24 +2,15 @@
   <div class="login-page">
     <div class="login-form">
       <h2>登录</h2>
-      <el-input 
-        v-model="username" 
-        placeholder="请输入用户名"
-        size="large"
-      />
-      <el-button 
-        type="primary" 
-        size="large" 
-        @click="handleLogin"
-        style="width: 100%; margin-top: 15px;"
-      >
+      <el-input v-model="username" placeholder="请输入用户名" size="large" />
+      <el-button type="primary" size="large" @click="handleLogin" style="width: 100%; margin-top: 15px;">
         登录
       </el-button>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { useUserStore } from '../store/userStore'
 import { useRouter } from 'vue-router'
@@ -51,16 +42,14 @@ const handleLogin = () => {
 
 .login-form {
   background: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+  border: 1px solid #ddd;
   width: 100%;
   max-width: 400px;
 }
 
 .login-form h2 {
   text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 20px;
 }
 </style>

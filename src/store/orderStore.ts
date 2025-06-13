@@ -1,18 +1,7 @@
 import { defineStore } from "pinia";
 
-interface Order {
-    orderId: string;
-    username: string;
-    tripId: string;
-    createdAt: string;
-}
-
-interface OrderState {
-    orders: Order[];
-}
-
 // 从localStorage加载订单数据
-const loadOrderState = (): OrderState => {
+const loadOrderState = () => {
     const savedState = localStorage.getItem('order-state')
     if (savedState) {
         return JSON.parse(savedState)
@@ -21,26 +10,26 @@ const loadOrderState = (): OrderState => {
 }
 
 // 保存订单数据到localStorage
-const saveOrderState = (state: OrderState) => {
+const saveOrderState = (state) => {
     localStorage.setItem('order-state', JSON.stringify(state))
 }
 
-export const useOrderStore = defineStore("order",{
-    state: (): OrderState => loadOrderState(),
+export const useOrderStore = defineStore("order", {
+    state: () => loadOrderState(),
 
     actions: {
-        addOrder(username: string, tripId: string) {
+        addOrder(username, tripId) {
             const time = new Date().toLocaleString()
-            this.orders.push({ 
-                username, 
-                tripId, 
-                createdAt: time, 
-                orderId: `${username}-${tripId}-${time}` 
+            this.orders.push({
+                username,
+                tripId,
+                createdAt: time,
+                orderId: `${username}-${tripId}-${time}`
             })
             saveOrderState(this.$state)
         },
-        getOrdersByUser(username: string) {
-            return this.orders.filter((o: Order) => o.username === username)
+        getOrdersByUser(username) {
+            return this.orders.filter((o) => o.username === username)
         }
     }
 })

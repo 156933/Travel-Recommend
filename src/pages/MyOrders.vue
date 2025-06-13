@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
 import { useOrderStore } from '../store/orderStore'
 import { useUserStore } from '../store/userStore'
@@ -61,7 +61,7 @@ const orders = computed(() => {
   return []
 })
 
-const getTrip = (tripId: string) => {
+const getTrip = (tripId) => {
   return tripStore.getTripById(tripId)
 }
 </script>
@@ -81,7 +81,6 @@ const getTrip = (tripId: string) => {
 .container h1 {
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
 }
 
 /* 未登录提示 */
@@ -94,28 +93,23 @@ const getTrip = (tripId: string) => {
 
 .login-prompt {
   background: white;
-  padding: 60px 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 40px;
+  border: 1px solid #ddd;
   text-align: center;
   max-width: 400px;
 }
 
 .login-prompt h2 {
   margin: 0 0 20px 0;
-  color: #333;
-  font-size: 1.8rem;
 }
 
 .login-prompt p {
-  color: #666;
   margin-bottom: 30px;
-  font-size: 1.1rem;
 }
 
 .login-actions {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
 }
 
@@ -129,8 +123,7 @@ const getTrip = (tripId: string) => {
 .order-item {
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,17 +131,11 @@ const getTrip = (tripId: string) => {
 
 .order-info h3 {
   margin: 0 0 5px 0;
-  color: #333;
 }
 
 .order-info p {
   margin: 3px 0;
-  color: #666;
   font-size: 14px;
-}
-
-.order-date {
-  color: #999 !important;
 }
 
 .order-price {
@@ -160,40 +147,35 @@ const getTrip = (tripId: string) => {
 /* 空订单状态 */
 .empty-orders {
   text-align: center;
-  padding: 60px 20px;
+  padding: 40px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
 }
 
 .empty-orders h2 {
   margin: 0 0 15px 0;
-  color: #333;
-  font-size: 1.5rem;
 }
 
 .empty-orders p {
-  font-size: 16px;
-  color: #666;
   margin-bottom: 25px;
 }
 
 @media (max-width: 768px) {
   .login-prompt {
-    padding: 40px 20px;
+    padding: 30px 20px;
     margin: 0 20px;
   }
-  
+
   .login-actions {
     flex-direction: column;
   }
-  
+
   .order-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   .order-price {
     align-self: flex-end;
   }
